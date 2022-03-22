@@ -72,10 +72,12 @@ def get_last_5_entries_sales():
     Returns data as list of lists
     """
     sales = SHEET.worksheet('sales')
+
     columns = []
     for ind in range(1, 7):
         column = sales.col_values(ind)
         columns.append(column[-5:])
+
     return columns
 
 def calculate_stock_data(data):
@@ -83,11 +85,13 @@ def calculate_stock_data(data):
     Calculate the average stock for each item type, adding 10%
     """
     new_stock_data = []
+
     for column in data:
         int_column = [int(num) for num in column]
         average = sum(int_column) / len(int_column)
         stock_num = average * 1.1
-    new_stock_data.append(round(stock_num))
+        new_stock_data.append(round(stock_num))
+
     return new_stock_data
 
 
